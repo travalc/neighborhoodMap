@@ -13,13 +13,13 @@ var view = { //initialize map
     });
     bounds = new google.maps.LatLngBounds();
     model.initialize();
-    
+
 
 
   },
   openList: function () {
 
-    listView.style.height = '250px';
+    listView.style.height = '25%';
   },
   closeList: function () {
     listView.style.height = '0';
