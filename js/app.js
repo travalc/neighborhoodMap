@@ -2,6 +2,7 @@ var map;
 var portland;
 var infoWindow;
 var visibleLocations;
+var bounds;
 var listView = document.getElementById('listView');
 var view = { //initialize map
   initMap: function () {
@@ -10,13 +11,11 @@ var view = { //initialize map
       center: portland,
       zoom: 16
     });
+    bounds = new google.maps.LatLngBounds();
     model.initialize();
     var openButton = document.getElementById('openButton');
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(openButton);
-    google.maps.event.addDomListener(window, 'resize', function() {
-      console.log('Yes');
-      map.setZoom(15);
-    });
+
   },
   openList: function () {
 
@@ -114,6 +113,7 @@ var viewModel = {
         animation: google.maps.Animation.DROP
       });
       visibleLocations[i].marker = marker;
+      bounds.extend(marker.position);
     }
   },
   setWindows: function () { // referenced this functionality from Udacity's Google Maps API course
