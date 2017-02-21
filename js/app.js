@@ -13,7 +13,7 @@ var view = { //initialize map
     });
     bounds = new google.maps.LatLngBounds();
     model.initialize();
-    var openButton = document.getElementById('openButton');
+    
 
 
   },
