@@ -19,7 +19,7 @@ var view = { //initialize map
   },
   openList: function () {
 
-    listView.style.height = '25%';
+    listView.style.height = '40%';
   },
   closeList: function () {
     listView.style.height = '0';
