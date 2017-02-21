@@ -1,0 +1,77 @@
+* {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+  color: #253F47;
+  font-size: 16px;
+  line-height: 1.25em;
+}
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+h1, ul, li, a {
+color: #afc107;
+}
+#list {
+  list-style: none;
+}
+@media screen and (min-width: 775px) {
+  #listView {
+    height: 100%;
+    width: 25%;
+    float: left;
+    background-color: #3d5377;
+  }
+
+  #filterInput, #list, h1 {
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+
+  #map {
+    height: 100%;
+    width: 75%;
+    float: right;
+  }
+  #openButton {
+    display: none;
+  }
+  #closeButton {
+    display: none;
+  }
+}
+@media screen and (max-width: 774px) {
+  #map {
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+  }
+  #listView {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    overflow-x: hidden;
+    transition: 0.5s;
+  }
+  #openButton {
+    display: block;
+    position: absolute;
+    z-index: 1;
+    font-size: 30px;
+    cursor: pointer;
+  }
+  #closeButton {
+    position: absolute;
+    display: block;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+  }
+}
