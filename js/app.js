@@ -5,7 +5,7 @@ var visibleLocations;
 var listView = document.getElementById('listView');
 var view = { //initialize map
   initMap: function () {
-    portland = new google.maps.LatLng(45.5231, -122.6765);
+    portland = new google.maps.LatLng(45.522946, -122.673517);
     map = new google.maps.Map(document.getElementById('map'), {
       center: portland,
       zoom: 16
