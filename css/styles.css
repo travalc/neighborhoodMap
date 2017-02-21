@@ -47,13 +47,13 @@ color: #afc107;
   #map {
     height: 100%;
     width: 100%;
-    z-index: -1;
+
   }
   #listView {
     height: 100%;
     width: 0;
     position: fixed;
-    z-index: 1;
+
     top: 0;
     left: 0;
     overflow-x: hidden;
@@ -62,7 +62,7 @@ color: #afc107;
   #openButton {
     display: block;
     position: absolute;
-    z-index: 1;
+
     font-size: 30px;
     cursor: pointer;
   }
