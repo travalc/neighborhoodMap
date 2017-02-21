@@ -13,6 +13,10 @@ var view = { //initialize map
     model.initialize();
     var openButton = document.getElementById('openButton');
     map.controls[google.maps.ControlPosition.TOP_RIGHT].push(openButton);
+    google.maps.event.addDomListener(window, 'resize', function() {
+      console.log('Yes');
+      map.setZoom(15);
+    });
   },
   openList: function () {
 
