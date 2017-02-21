@@ -9,14 +9,18 @@
 </head>
 <body>
   <div id = "titleBar">
-    <h2 id ="titleAndButton">
-    <span id = "title">Portland Restaurants (Click a marker for more info)</span>
-    <span id = "openButton" onclick="view.openList()">&#9776;</span>
-    </h2>
+    <div id = "titleAndCaption">
+      <h2 id = "title">Portland Restaurants</h2>
+      <p id = "directions">Click a marker for more info or click upper right icon for list view</p>
+    </div>
+    <div id="buttonBox">
+      <h2 id = "openButton" onclick="view.openList()">&#9776;</h2>
+    </div>
   </div>
 
   <div id = "listView">
     <a href="javascript:void(0)" id="closeButton" onclick="view.closeList()">&times;</a>
+    <br/>
     <h1>Top Rated Restaurants In And Around Portland's Chinatown Neighborhood</h1>
     <input placeholder="Filter results by letter" id = "filterInput" data-bind = "value: filter, valueUpdate: 'keyup'"></input>
     <ul id = "list" data-bind = "foreach: visibleLocations">

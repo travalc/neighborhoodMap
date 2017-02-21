@@ -51,7 +51,7 @@ color: #afc107;
 }
 @media screen and (max-width: 774px) {
   #map {
-    height: 96%;
+    height: 94%;
     width: 100%;
 
   }
@@ -62,7 +62,7 @@ color: #afc107;
     z-index: 1;
     top: 0;
     left: 0;
-    overflow-x: hidden;
+    overflow-y: auto;
     transition: 0.5s;
   }
   #closeButton {
@@ -73,34 +73,47 @@ color: #afc107;
     font-size: 30px;
     margin-right: 0;
     margin-top: 0;
+    margin-bottom: 15px;
   }
   #openButton {
-    font-size: 20px;
+    font-size: 25px;
     color: #afc107;
     cursor: pointer;
-    float: right;
-    margin-right: 10px;
+    margin-right: 0;
+    margin-left: 87%;
     margin-top: 0;
+
+
+  }
+  #buttonBox{
+    padding-right: 0;
+    width: 50%;
   }
   #title {
-    font-size: 12px;
+    font-size: 16px;
+    margin-bottom: 0;
     float: left;
     color: #afc107;
   }
   #directions {
-    font-size: 1px;
+    margin-top: 0px;
+    padding-top: 0;
+    font-size: 5px;
     color: #afc107;
   }
-  #titleAndButton {
-    margin-top: 0;
-    margin-bottom: 0;
+  #titleAndCaption {
+    display: flex;
+    flex-direction: column;
+    margin-left: 0;
+    width: 50%
 
   }
   #titleBar {
-    overflow-y: auto;
+    display: flex;
+    flex-direction: row;
     padding-bottom: 0;
     width: 100%;
-    height: 4%;
+    height: 6%;
     background-color: #3d5377;
     position:inherit;
     margin-top: 0;
