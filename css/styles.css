@@ -83,8 +83,12 @@ color: #afc107;
     margin-top: 0;
   }
   #title {
-    font-size: 15px;
+    font-size: 12px;
     float: left;
+    color: #afc107;
+  }
+  #directions {
+    font-size: 1px;
     color: #afc107;
   }
   #titleAndButton {
