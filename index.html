@@ -8,17 +8,24 @@
   <title>Neighborhood Map</title>
 </head>
 <body>
+  <div id = "titleBar">
+    <h2 id ="titleAndButton">
+    
+    <span id = "openButton" onclick="view.openList()">&#9776;</span>
+    </h2>
+  </div>
+
   <div id = "listView">
     <a href="javascript:void(0)" id="closeButton" onclick="view.closeList()">&times;</a>
     <h1>Top Rated Restaurants In And Around Portland's Chinatown Neighborhood</h1>
-    <input id = "filterInput" data-bind = "value: filter, valueUpdate: 'keyup'"></input>
+    <input placeholder="Filter results by letter" id = "filterInput" data-bind = "value: filter, valueUpdate: 'keyup'"></input>
     <ul id = "list" data-bind = "foreach: visibleLocations">
         <li>
           <a data-bind = "text: name, click: function() {$parent.populateWindow(marker, infoWindow); $parent.setBounceToClickedListItems(marker)}" href="#"></a>
         </li>
     </ul>
   </div>
-  
+
   <div id = "map">
 
   </div>

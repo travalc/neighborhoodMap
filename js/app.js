@@ -14,15 +14,15 @@ var view = { //initialize map
     bounds = new google.maps.LatLngBounds();
     model.initialize();
     var openButton = document.getElementById('openButton');
-    map.controls[google.maps.ControlPosition.TOP_RIGHT].push(openButton);
+
 
   },
   openList: function () {
 
-    listView.style.width = '250px';
+    listView.style.height = '250px';
   },
   closeList: function () {
-    listView.style.width = '0';
+    listView.style.height = '0';
   }
 }
 
@@ -133,6 +133,7 @@ var viewModel = {
       infowindow.open(map, marker);
       infowindow.addListener('closeclick', function() {
         infowindow.marker = null;
+        marker.setAnimation(null);
       });
   },
   search: function(character) { //referenced this tutorial for this functionality: http://opensoul.org/2011/06/23/live-search-with-knockoutjs/
