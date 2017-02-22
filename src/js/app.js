@@ -13,16 +13,9 @@ var view = { //initialize map
         });
         bounds = new google.maps.LatLngBounds();
         model.initialize();
-
-
-
     },
-    openList: function() { //responsive function for hamburger button on mobile, brings listed locations and filter input into view
-
-        listView.style.height = '40%';
-    },
-    closeList: function() {
-        listView.style.height = '0';
+    mapError: function() {
+        alert("Unable to load google map. Please try again");
     }
 };
 
@@ -58,27 +51,37 @@ var model = {
             success: function(results) { //Loads location data from API request into model
                 console.log(results);
                 for (var i = 0; i < results.businesses.length; i++) {
+                    var name = results.businesses[i].name || "No name provided";
+                    var address = results.businesses[i].location.display_address || "No address provided";
+                    var coordinates = {
+                        lat: results.businesses[i].location.coordinate.latitude,
+                        lng: results.businesses[i].location.coordinate.longitude
+                    } || "No coordinates provided";
+                    var categories = results.businesses[i].categories || "No categories provided";
+                    var phone = results.businesses[i].display_phone || "No phone provided";
+                    var image = results.businesses[i].image_url || "No image provided";
+                    var id = results.businesses[i].id || "No id provided";
+                    var rating_img = results.businesses[i].rating_img_url || "No rating image provided";
+                    var top_comment = results.businesses[i].snippet_text || "No comment provided";
+                    var url = results.businesses[i].url || "No URL provided";
                     model.locations.push({
-                        name: results.businesses[i].name,
-                        address: results.businesses[i].location.display_address,
-                        coordinates: {
-                            lat: results.businesses[i].location.coordinate.latitude,
-                            lng: results.businesses[i].location.coordinate.longitude
-                        },
-                        categories: results.businesses[i].categories,
-                        phone: results.businesses[i].display_phone,
-                        image: results.businesses[i].image_url,
-                        id: results.businesses[i].id,
-                        rating_img: results.businesses[i].rating_img_url,
-                        top_comment: results.businesses[i].snippet_text,
-                        url: results.businesses[i].url
+                        name: name,
+                        address: address,
+                        coordinates: coordinates,
+                        categories: categories,
+                        phone: phone,
+                        image: image,
+                        id: id,
+                        rating_img: rating_img,
+                        top_comment: top_comment,
+                        url: url
                     });
                 }
                 console.log(model.locations);
                 viewModel.initialize();
             },
-            fail: function() { //alerts user if Yelp API request failed
-                alert('Failed to get Yelp Data');
+            error: function(err) { //alerts user if Yelp API request failed
+                alert('Failed to get Yelp Data because of' + err);
             }
         };
         $.ajax(settings);
@@ -95,7 +98,14 @@ var viewModel = {
         }
         viewModel.setMarkers();
         viewModel.setWindows();
-        viewModel.setBounceToClickedMarkers();
+        visibleLocations.forEach(function(location) {
+            (function(item) {
+                item.marker.addListener('click', function() {
+                    viewModel.setBounce(item.marker);
+                });
+            })(location);
+        });
+
         ko.applyBindings(viewModel);
 
         viewModel.filter.subscribe(viewModel.search);
@@ -141,40 +151,25 @@ var viewModel = {
         });
     },
     search: function(character) { //referenced this tutorial for this functionality: http://opensoul.org/2011/06/23/live-search-with-knockoutjs/. Function that filters list items based on key entered.
+        infoWindow.close();
         for (var j = 0; j < visibleLocations.length; j++) {
-            visibleLocations[j].marker.setMap(null);
+            visibleLocations[j].marker.setVisible(false);
+            visibleLocations[j].marker.setAnimation(null);
+
         }
         viewModel.visibleLocations.removeAll();
         for (var i = 0; i < model.locations.length; i++) {
 
             if (model.locations[i].name.toLowerCase().indexOf(character.toLowerCase()) >= 0) {
                 viewModel.visibleLocations.push(model.locations[i]);
+                for (var k = 0; k < visibleLocations.length; k++) {
+                    visibleLocations[k].marker.setVisible(true);
+                }
             }
         }
-        viewModel.setMarkers();
-        viewModel.setWindows();
-        viewModel.setBounceToClickedMarkers();
+
     },
-    setBounceToClickedMarkers: function() { //referenced Google Maps API documentation for this functionality. Sets animated bounce when marker is selected.
-        for (var j = 0; j < visibleLocations.length; j++) {
-            (function(index) { //closure
-                visibleLocations[index].marker.addListener('click', function() {
-                    console.log(visibleLocations[index].marker);
-                    if (visibleLocations[index].marker.getAnimation() !== null) {
-                        visibleLocations[index].marker.setAnimation(null);
-                    } else {
-                        visibleLocations[index].marker.setAnimation(google.maps.Animation.BOUNCE);
-                        for (var k = 0; k < visibleLocations.length; k++) {
-                            if (visibleLocations[k] !== visibleLocations[index] && visibleLocations[k].marker.getAnimation() === google.maps.Animation.BOUNCE) {
-                                visibleLocations[k].marker.setAnimation(null);
-                            }
-                        }
-                    }
-                });
-            })(j);
-        }
-    },
-    setBounceToClickedListItems: function(marker) { //Sets animation to marker when associated list item is selected
+    setBounce: function(marker) { //Sets animation to marker when associated list item is selected
         if (marker.getAnimation() !== null) {
             marker.setAnimation(null);
         } else {
@@ -185,5 +180,12 @@ var viewModel = {
                 }
             }
         }
+    },
+    openList: function() { //responsive function for hamburger button on mobile, brings listed locations and filter input into view
+
+        listView.style.height = '40%';
+    },
+    closeList: function() {
+        listView.style.height = '0';
     }
 };
