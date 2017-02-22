@@ -16,6 +16,13 @@ var view = { //initialize map
     },
     mapError: function() {
         alert("Unable to load google map. Please try again");
+    },
+    openList: function() { //responsive function for hamburger button on mobile, brings listed locations and filter input into view
+
+        listView.style.height = '40%';
+    },
+    closeList: function() {
+        listView.style.height = '0';
     }
 };
 
@@ -180,12 +187,5 @@ var viewModel = {
                 }
             }
         }
-    },
-    openList: function() { //responsive function for hamburger button on mobile, brings listed locations and filter input into view
-
-        listView.style.height = '40%';
-    },
-    closeList: function() {
-        listView.style.height = '0';
     }
 };

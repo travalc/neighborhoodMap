@@ -16,12 +16,12 @@
             <p id="directions">Click a marker for more info or click upper right icon for list view</p>
         </div>
         <div id="buttonBox">
-            <h2 id="openButton" data-bind="click: openList">&#9776;</h2>
+            <h2 id="openButton" onclick="view.openList()">&#9776;</h2>
         </div>
     </header>
 
     <aside id="listView">
-        <a href="javascript:void(0)" id="closeButton" data-bind="click: closeList">&times;</a>
+        <a href="javascript:void(0)" id="closeButton" onclick="view.closeList()">&times;</a>
         <br/>
         <h1>Top Rated Restaurants In And Around Portland's Chinatown Neighborhood</h1>
         <input placeholder="Filter results by letter" id="filterInput" data-bind="value: filter, valueUpdate: 'keyup'">
