@@ -1,10 +1,10 @@
-#**Neighborhood Map Project**
+**Neighborhood Map Project**
 
-##**About**
+**About**
 
 This application displays information about top rated local restaurants in the Downtown Portland, Oregon neighborhood. The data about these locations has been retrieved from the Yelp API, and the Google Maps API is used to map the locations and add marker and infowindow functionality. The Knockout JS MVVM framework is utilized to handle asynchronous filtering functionality.
 
-##**How to Run**
+**How to Run**
 
 1. Navigate to the 'dist' folder from the home directory, and open 'index.html' in the browser of your choosing.
 2. Restaurant locations should automatically populate the map upon loading.
